@@ -6,20 +6,21 @@ import {Contact_Us} from './pages/Contact_Us'
 import {Home} from './pages/Home'
 import { Login } from './pages/Login';
 import { Create_account } from './pages/Create_account';
+import { Select_allergies } from "./pages/Select_allergies";
+
 function App() {
   return (
-  <div className='App'>
-  <Navbar></Navbar>
-  <Routes>
-    <Route path="/about-us" element ={<About_Us/>}/>
-    <Route path="/contact-us" element ={<Contact_Us/>}/>
-    <Route path="/" element ={<Home/>}/>
-    <Route path="/login" element ={<Login/>}/>
-    <Route path="/create-account" element ={<Create_account/>}/>
-    
-
-  </Routes>
-  </div>
+    <div className="App">
+      <Navbar></Navbar>
+      <Routes>
+        <Route path="/about-us" element={<About_Us />} />
+        <Route path="/contact-us" element={<Contact_Us />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/create-account" element={<Create_account />} />
+        <Route path="/select_allergies" element={<Select_allergies />} />
+      </Routes>
+    </div>
   );
 }
 
