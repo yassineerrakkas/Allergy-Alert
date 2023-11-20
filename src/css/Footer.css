@@ -1,0 +1,20 @@
+footer {
+    background-color: #7c7c7c;
+    color: #fff;
+    padding: 2rem;
+    text-align: center;
+    border-radius: 10px;
+    margin-bottom: .5rem;
+  }
+  
+  #inner-container {
+    max-width: 1200px;
+    margin: 1rem auto;
+    font-size: 1rem;
+    font-weight: 100;
+  }
+  
+  .footer-text {
+    margin: 8px 0;
+  }
+  

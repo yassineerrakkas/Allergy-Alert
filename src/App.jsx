@@ -9,6 +9,7 @@ import { Create_account } from './pages/Create_account';
 import { Select_allergies } from "./pages/Select_allergies";
 import { Profile } from "./pages/Profile";
 import { useState } from "react";
+import { Footer } from "./components/Footer";
 
 function App() {
   const mockUserData = {
@@ -33,6 +34,7 @@ function App() {
           element={<Profile user={mockUserData} allergies={mockAllergies} />}
         />
       </Routes>
+      <Footer></Footer>
     </div>
   );
 }
