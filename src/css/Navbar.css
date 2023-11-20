@@ -40,7 +40,7 @@
     background: #39DB4A;
     padding: 0.5rem 0.25rem;
     text-align: center; 
-    margin: 0 1rem;
+    margin-right: 0.5rem;
 
 }
 .create-account a{
@@ -49,7 +49,7 @@
     font-style: normal;
     line-height: 30px; 
 }
-.login{
+.login,.logout{
     color :black;
     background-color: white;
     border-color: #39DB4A;
@@ -57,4 +57,10 @@
 }
 .hac li .active {
     color :#39DB4A
+}
+.profile{
+    font-size: 2.7rem;
+    margin: 0 1.2rem;
+    color: #7eff8b;
+    cursor: pointer;
 }

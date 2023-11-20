@@ -7,15 +7,17 @@ import {Home} from './pages/Home'
 import { Login } from './pages/Login';
 import { Create_account } from './pages/Create_account';
 import { Select_allergies } from "./pages/Select_allergies";
+import { useState } from "react";
 
 function App() {
+  const [islogin, changestate] = useState(true);
   return (
     <div className="App">
-      <Navbar></Navbar>
+      <Navbar islogin={islogin}></Navbar>
       <Routes>
         <Route path="/about-us" element={<About_Us />} />
         <Route path="/contact-us" element={<Contact_Us />} />
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home islogin={islogin} />} />
         <Route path="/login" element={<Login />} />
         <Route path="/create-account" element={<Create_account />} />
         <Route path="/select_allergies" element={<Select_allergies />} />
