@@ -77,3 +77,10 @@
     font-weight: 100;
     color: #3A3A3A;
 }
+.succhange,.notsucchange {
+    font-size: 1rem;
+    color : #F77;
+}
+.succhange{
+    color :#39DB4A;
+}
