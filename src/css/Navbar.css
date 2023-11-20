@@ -22,6 +22,7 @@
 .hac,.btns{
     display: flex;
     align-items: center;
+    text-align: center;
 }
 .hac li {
     list-style: none;
@@ -58,9 +59,13 @@
 .hac li .active {
     color :#39DB4A
 }
-.profile{
+.profile-icon{
     font-size: 2.7rem;
     margin-right: 1.2rem;
     color: #7eff8b;
     cursor: pointer;
+    text-align: center;
+}
+.profile-icon a{
+    text-align: center;
 }

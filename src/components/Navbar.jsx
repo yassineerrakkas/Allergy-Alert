@@ -26,7 +26,7 @@ const Navbar = ({ islogin }) => {
               <NavLink to="/">Log out</NavLink>
             </div>
             <NavLink to="profile">
-              <span class="material-symbols-outlined profile">
+              <span class="material-symbols-outlined profile-icon">
                 account_circle
               </span>
             </NavLink>

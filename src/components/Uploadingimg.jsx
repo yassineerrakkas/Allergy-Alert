@@ -49,6 +49,7 @@ export const Uploadingimg = () => {
   return (
     <>
       <div className="options">
+        Ingredients
         <span className="material-symbols-outlined arrow"> expand_more </span>
       </div>
       <div
