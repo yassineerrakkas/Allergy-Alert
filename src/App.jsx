@@ -18,22 +18,24 @@ function App() {
     // Add more user details as needed
   };
   const mockAllergies = ["Produits de la mer", "Collations sans gluten"];
-  const [islogin, changestate] = useState(true);
+  const [islogin, changestate] = useState(false);
   return (
     <div className="App">
-      <Navbar islogin={islogin}></Navbar>
-      <Routes>
-        <Route path="/about-us" element={<About_Us />} />
-        <Route path="/contact-us" element={<Contact_Us />} />
-        <Route path="/" element={<Home islogin={islogin} />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/create-account" element={<Create_account />} />
-        <Route path="/select_allergies" element={<Select_allergies />} />
-        <Route
-          path="/profile"
-          element={<Profile user={mockUserData} allergies={mockAllergies} />}
-        />
-      </Routes>
+      <div className="app-content">
+        <Navbar islogin={islogin}></Navbar>
+        <Routes>
+          <Route path="/about-us" element={<About_Us />} />
+          <Route path="/contact-us" element={<Contact_Us />} />
+          <Route path="/" element={<Home islogin={islogin} />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/create-account" element={<Create_account />} />
+          <Route path="/select_allergies" element={<Select_allergies />} />
+          <Route
+            path="/profile"
+            element={<Profile user={mockUserData} allergies={mockAllergies} />}
+          />
+        </Routes>
+      </div>
       <Footer></Footer>
     </div>
   );

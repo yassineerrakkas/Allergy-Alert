@@ -24,8 +24,7 @@ export const Create_account = () => {
             </NavLink>
             <div className="register">
               <p>
-                Already Have an account?{" "}
-                <NavLink to="/create-account">Login</NavLink>
+                Already Have an account? <NavLink to="/login">Login</NavLink>
               </p>
             </div>
           </form>
