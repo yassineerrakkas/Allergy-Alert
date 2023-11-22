@@ -1,9 +1,12 @@
+// UserController.java
 package com.app.allergy_alert_be.controller;
 
 import com.app.allergy_alert_be.model.User;
 import com.app.allergy_alert_be.model.UserRegistrationRequest;
 import com.app.allergy_alert_be.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -14,7 +17,19 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/register")
-    public User registerUser(@RequestBody UserRegistrationRequest request) {
-        return userService.createUser(request.getUsername(), request.getEmail(), request.getPassword());
+    public ResponseEntity<?> registerUser(@RequestBody UserRegistrationRequest request) {
+        // Check if the email already exists
+        if (userService.doesEmailExist(request.getEmail())) {
+            return new ResponseEntity<>("Email already exists", HttpStatus.CONFLICT);
+        }
+
+        // Register the user
+        User registeredUser = userService.createUser(request);
+        return new ResponseEntity<>(registeredUser, HttpStatus.OK);
+    }
+
+    @PostMapping("/{userEmail}/allergies")
+    public ResponseEntity<?> addUserAllergies(@PathVariable String userEmail, @RequestBody UserRegistrationRequest request) {
+        return new ResponseEntity<>(userService.addUserAllergies(userEmail, request.getSelectedAllergies()), HttpStatus.OK);
     }
 }

@@ -1,25 +1,27 @@
 package com.app.allergy_alert_be.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
-@Entity
-@Table
-@Data
+import java.util.Set;
 
+@Entity
+@Table(name = "users")
+@Data
 public class User {
     @Id
-    @SequenceGenerator(
-            name = "user_sequence",
-            sequenceName = "user_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "user_sequence"
-    )
-    private Long id;
     private String email;
+
     private String full_name;
     private String password;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "user_allergies",
+            joinColumns = @JoinColumn(name = "user_email"),
+            inverseJoinColumns = @JoinColumn(name = "allergy_id")
+    )
+    @JsonIgnore // Add this annotation to break the infinite loop
+    private Set<Allergy> allergies;
 }
