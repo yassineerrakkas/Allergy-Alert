@@ -1,7 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import "../css/Navbar.css";
-import { NavLink } from "react-router-dom";
-const Navbar = ({ islogin }) => {
+
+const Navbar = ({ islogin, changestate }) => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.setItem("islogin", "false"); // Set the string "false"
+    changestate(false); // Update the state
+    navigate("/");
+  };
+
   return (
     <div className="Navbar">
       <NavLink to="/" className="logo">
@@ -22,11 +31,11 @@ const Navbar = ({ islogin }) => {
       <div className="btns">
         {islogin ? (
           <>
-            <div className="btn logout">
-              <NavLink to="/">Log out</NavLink>
+            <div className="btn logout" onClick={handleLogout}>
+              Log out
             </div>
             <NavLink to="profile">
-              <span class="material-symbols-outlined profile-icon">
+              <span className="material-symbols-outlined profile-icon">
                 account_circle
               </span>
             </NavLink>
@@ -47,4 +56,5 @@ const Navbar = ({ islogin }) => {
     </div>
   );
 };
+
 export default Navbar;

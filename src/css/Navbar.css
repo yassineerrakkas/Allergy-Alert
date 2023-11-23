@@ -55,6 +55,11 @@
     background-color: white;
     border-color: #39DB4A;
     border: 2px;
+    cursor: pointer;
+}
+.login a:hover,.logout:hover{
+    color: #39DB4A;
+    transition: 0.1s;
 }
 .hac li .active {
     color :#39DB4A

@@ -1,51 +1,94 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import "../css/Select_allergies.css";
-import { NavLink } from "react-router-dom";
 
-export const Select_allergies = () => {
-  const options = [
-    "Produits laitiers",
-    "Produits de la mer",
-    "Délices végétariens",
-    "Collations sans gluten",
-    "Huile de palme",
-    "Allergies aux colorants",
-    "Œuf de poulet",
-    "E-numéros d'origine animale",
-  ];
-
+export const Select_allergies = ({ islogin, changestate }) => {
+  const [allergies, setAllergies] = useState([]);
   const [selectedAllergies, setSelectedAllergies] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const { email } = useParams();
+  const navigate = useNavigate();
 
-  const handleAllergyChange = (allergy) => {
-    if (selectedAllergies.includes(allergy)) {
-      // If the allergy is already selected, remove it
-      setSelectedAllergies(selectedAllergies.filter((a) => a !== allergy));
+  useEffect(() => {
+    const fetchAllergies = async () => {
+      try {
+        const response = await fetch("http://localhost:8080/api/allergies");
+        if (response.ok) {
+          const data = await response.json();
+          setAllergies(data);
+        } else {
+          console.error("Failed to fetch allergies");
+        }
+      } catch (error) {
+        console.error("An error occurred:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAllergies();
+  }, []);
+
+  const handleAllergyChange = (allergyId) => {
+    if (selectedAllergies.includes(allergyId)) {
+      setSelectedAllergies(selectedAllergies.filter((id) => id !== allergyId));
     } else {
-      // If the allergy is not selected, add it
-      setSelectedAllergies([...selectedAllergies, allergy]);
+      setSelectedAllergies([...selectedAllergies, allergyId]);
+    }
+  };
+
+  const handleContinue = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:8080/api/users/${email}/allergies`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            selectedAllergies,
+          }),
+        }
+      );
+
+      if (response.ok) {
+        console.log("Allergies updated successfully!");
+        localStorage.setItem("islogin", "true"); // Set the string "false"
+        changestate(true); // Update the state
+        navigate("/");
+      } else {
+        console.error("Failed to update allergies");
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
     }
   };
 
   return (
     <div className="alrg-content">
       <h1 className="alrg-title">Select Your Allergies</h1>
-      <div className="Allergies-container">
-        {options.map((allergy, index) => (
-          <div key={index}>
-            <input
-              type="checkbox"
-              id={allergy}
-              value={allergy}
-              checked={selectedAllergies.includes(allergy)}
-              onChange={() => handleAllergyChange(allergy)}
-            />
-            <label htmlFor={allergy}> {allergy}</label>
-          </div>
-        ))}
-        <NavLink to="/">
-          <button className="sbt-button">Continue</button>
-        </NavLink>
-      </div>
+      {loading ? (
+        <p>Loading allergies...</p>
+      ) : (
+        <div className="Allergies-container">
+          {allergies.map((allergy) => (
+            <div key={allergy.id}>
+              <input
+                type="checkbox"
+                id={allergy.name}
+                value={allergy.id}
+                checked={selectedAllergies.includes(allergy.id)}
+                onChange={() => handleAllergyChange(allergy.id)}
+              />
+              <label htmlFor={allergy.name}>{allergy.name}</label>
+            </div>
+          ))}
+          <button className="sbt-button" onClick={handleContinue}>
+            Continue
+          </button>
+        </div>
+      )}
 
       <div>
         <p>Selected Allergies: {selectedAllergies.join(", ")}</p>
