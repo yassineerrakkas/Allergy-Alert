@@ -3,8 +3,8 @@ import React, { useState } from "react";
 export const Form = () => {
   const [formData, setFormData] = useState({
     email: "",
-    feeling: "Happy",
-    message: "",
+    react: "Happy",
+    comment: "",
   });
 
   const handleChange = (e) => {
@@ -16,29 +16,35 @@ export const Form = () => {
   };
 
   const handleSubmit = async (e) => {
-    // e.preventDefault();
-    // try {
-    //   const response = await fetch("http://localhost:8080/api/submit-form", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(formData),
-    //   });
-    //   if (response.ok) {
-    //     console.log("Form submitted successfully!");
-    //     // Reset the form data after successful submission
-    //     setFormData({
-    //       email: "",
-    //       feeling: "Happy",
-    //       message: "",
-    //     });
-    //   } else {
-    //     console.error("Form submission failed.");
-    //   }
-    // } catch (error) {
-    //   console.error("Error submitting form:", error);
-    // }
+    e.preventDefault();
+    try {
+      const response = await fetch(
+        "http://localhost:8080/api/comments/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: formData.email,
+            react: formData.feeling,
+            comment: formData.message,
+          }),
+        }
+      );
+      if (response.ok) {
+        console.log("Form submitted successfully!");
+        setFormData({
+          email: "",
+          feeling: "Happy",
+          message: "",
+        });
+      } else {
+        console.error("Form submission failed.");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
   };
   const handlesub = () => {
     console.log(formData);
@@ -119,7 +125,7 @@ export const Form = () => {
         ></textarea>
       </div>
 
-      <button type="submit" className="submit-btn">
+      <button type="submit" className="submit-btn" onClick={handleSubmit}>
         Submit
       </button>
     </form>
