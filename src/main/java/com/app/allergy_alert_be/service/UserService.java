@@ -9,6 +9,7 @@ import com.app.allergy_alert_be.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,7 +21,11 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
-
+    private final BCryptPasswordEncoder passwordEncoder;
+    @Autowired
+    public UserService(BCryptPasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
     @Autowired
     private AllergyRepository allergyRepository;
 
@@ -35,7 +40,7 @@ public class UserService {
 
         user.setFullName(request.getFullName());
         user.setEmail(request.getEmail());
-        user.setPassword(request.getPassword()); // Encode the password
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
 
         return userRepository.save(user);}
 
