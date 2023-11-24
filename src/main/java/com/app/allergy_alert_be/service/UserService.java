@@ -24,6 +24,7 @@ public class UserService {
     @Autowired
     private AllergyRepository allergyRepository;
 
+
     public User createUser(UserRegistrationRequest request) {
         // Check if the email already exists
         if (doesEmailExist(request.getEmail())) {
@@ -31,13 +32,12 @@ public class UserService {
         }
 
         User user = new User();
-        user.setFull_name(request.getFullName());
+
+        user.setFullName(request.getFullName());
         user.setEmail(request.getEmail());
-        user.setPassword(request.getPassword());
+        user.setPassword(request.getPassword()); // Encode the password
 
-
-        return userRepository.save(user);
-    }
+        return userRepository.save(user);}
 
     public User addUserAllergies(String userEmail, List<Long> selectedAllergies) {
         Optional<User> userOptional = userRepository.findByEmail(userEmail);

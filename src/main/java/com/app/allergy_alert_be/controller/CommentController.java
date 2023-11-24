@@ -1,0 +1,30 @@
+package com.app.allergy_alert_be.controller;
+
+import com.app.allergy_alert_be.model.Comment;
+import com.app.allergy_alert_be.model.CommentRegistrationRequest;
+import com.app.allergy_alert_be.model.User;
+import com.app.allergy_alert_be.model.UserRegistrationRequest;
+import com.app.allergy_alert_be.service.CommentService;
+import com.app.allergy_alert_be.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/api/comments")
+
+public class CommentController {
+    @Autowired
+    private CommentService commentService;
+    @PostMapping("/register")
+    public ResponseEntity<?> registerComment(@RequestBody CommentRegistrationRequest request) {
+
+        // Register the comment
+        Comment registeredComment = commentService.createComment(request);
+        return new ResponseEntity<>(registeredComment, HttpStatus.OK);
+    }
+}

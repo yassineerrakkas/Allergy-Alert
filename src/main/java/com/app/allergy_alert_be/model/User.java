@@ -11,9 +11,13 @@ import java.util.Set;
 @Data
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @Column(unique = true)
     private String email;
 
-    private String full_name;
+    private String fullName;
     private String password;
 
     @ManyToMany(cascade = CascadeType.ALL)
