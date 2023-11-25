@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "../css/Select_allergies.css";
 
-export const Select_allergies = ({ islogin, changestate }) => {
+export const Select_allergies = ({ changestate }) => {
   const [allergies, setAllergies] = useState([]);
   const [selectedAllergies, setSelectedAllergies] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -54,8 +54,9 @@ export const Select_allergies = ({ islogin, changestate }) => {
 
       if (response.ok) {
         console.log("Allergies updated successfully!");
-        localStorage.setItem("islogin", "true"); // Set the string "false"
-        changestate(true); // Update the state
+        localStorage.setItem("islogin", "true");
+        changestate(true);
+        localStorage.setItem("useremail", email);
         navigate("/");
       } else {
         console.error("Failed to update allergies");
@@ -81,7 +82,7 @@ export const Select_allergies = ({ islogin, changestate }) => {
                 checked={selectedAllergies.includes(allergy.id)}
                 onChange={() => handleAllergyChange(allergy.id)}
               />
-              <label htmlFor={allergy.name}>{allergy.name}</label>
+              <label htmlFor={allergy.name}>   {allergy.name}</label>
             </div>
           ))}
           <button className="sbt-button" onClick={handleContinue}>
@@ -90,9 +91,9 @@ export const Select_allergies = ({ islogin, changestate }) => {
         </div>
       )}
 
-      <div>
+      {/* <div>
         <p>Selected Allergies: {selectedAllergies.join(", ")}</p>
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -22,7 +22,6 @@ function App() {
   useEffect(() => {
     const storedIsLogin = localStorage.getItem("islogin") === "true";
     changestate(storedIsLogin);
-    window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
   return (
@@ -37,9 +36,7 @@ function App() {
           <Route path="/create-account" element={<Create_account />} />
           <Route
             path="/select_allergies/:email"
-            element={
-              <Select_allergies islogin={islogin} changestate={changestate} />
-            }
+            element={<Select_allergies changestate={changestate} />}
           />
           <Route
             path="/profile"
