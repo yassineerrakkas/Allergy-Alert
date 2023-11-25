@@ -1,4 +1,4 @@
-package com.app.allergy_alert_be.model;
+package com.app.allergy_alert_be.Request_Response;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

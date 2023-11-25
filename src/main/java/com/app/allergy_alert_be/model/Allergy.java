@@ -4,25 +4,13 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table
 @Data
 public class Allergy {
     @Id
-    @SequenceGenerator(
-            name = "allergy_sequence",
-            sequenceName = "allergy_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "allergy_sequence"
-    )
     private Long id;
-
     private String name;
-
-    @ManyToMany(mappedBy = "allergies")
-    private List<User> users;
 }

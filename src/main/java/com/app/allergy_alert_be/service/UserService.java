@@ -1,13 +1,13 @@
 // UserService.java
 package com.app.allergy_alert_be.service;
 
-import com.app.allergy_alert_be.DTO.LoginDTO;
+import com.app.allergy_alert_be.model.Login;
 import com.app.allergy_alert_be.model.Allergy;
 import com.app.allergy_alert_be.model.User;
-import com.app.allergy_alert_be.model.UserRegistrationRequest;
+import com.app.allergy_alert_be.Request_Response.UserRegistrationRequest;
 import com.app.allergy_alert_be.repository.AllergyRepository;
 import com.app.allergy_alert_be.repository.UserRepository;
-import com.app.allergy_alert_be.response.LoginResponse;
+import com.app.allergy_alert_be.Request_Response.LoginResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
@@ -30,7 +30,8 @@ public class UserService {
     }
     @Autowired
     private AllergyRepository allergyRepository;
-
+    @Autowired
+    private IngredientService ingredientService;
 
     public User createUser(UserRegistrationRequest request) {
         // Check if the email already exists
@@ -46,27 +47,21 @@ public class UserService {
 
         return userRepository.save(user);}
 
-    public LoginResponse loginUser(LoginDTO loginDTO) {
-        String msg = "";
-        Optional<User> user1 = userRepository.findByEmail(loginDTO.getEmail());
-        if (user1.isPresent())  {
-            User user2 = user1.get();
-            String password = loginDTO.getPassword();
-            String encodedPassword = user2.getPassword();
-            Boolean isPwdRight = passwordEncoder.matches(password, encodedPassword);
-            if (isPwdRight) {
-                Optional<User> user = userRepository.findOneByEmailAndPassword(loginDTO.getEmail(), encodedPassword);
-                if (((Optional<?>) user).isPresent()) {
-                    return new LoginResponse("Login Success", true);
-                } else {
-                    return new LoginResponse("Login Failed", false);
-                }
-            } else {
+    public LoginResponse loginUser(Login login) {
+        Optional<User> userOptional = userRepository.findByEmail(login.getEmail());
 
-                return new LoginResponse("password Not Match", false);
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            String password = login.getPassword();
+            String encodedPassword = user.getPassword();
+
+            if (passwordEncoder.matches(password, encodedPassword)) {
+                return new LoginResponse("Login Success", true);
+            } else {
+                return new LoginResponse("Password does not match", false);
             }
-        }else {
-            return new LoginResponse("Email not exits", false);
+        } else {
+            return new LoginResponse("Email does not exist", false);
         }
     }
 
@@ -96,7 +91,23 @@ public class UserService {
         // Handle the case where the user is not found
         return null;
     }
+    public List<Long> getAllergyIdsByEmail(String userEmail) throws UserNotFoundException {
+        Optional<User> userOptional = userRepository.findByEmail(userEmail);
 
+        if (userOptional.isPresent()) {
+            Set<Allergy> allergies = userOptional.get().getAllergies();
+            return allergies.stream()
+                    .map(allergy -> allergy.getId()) // Ensure that this matches the actual method in your Allergy class
+                    .collect(Collectors.toList());
+
+        } else {
+            throw new UserNotFoundException("User not found with email: " + userEmail);
+        }
+    }
+    public List<String> getIngredientsByAllergyIds(List<Long> allergyIds) {
+        List<Integer> allergyIdsAsIntegers = allergyIds.stream().map(Long::intValue).collect(Collectors.toList());
+        return ingredientService.getIngredientsByAllergyIds(allergyIdsAsIntegers);
+    }
     public boolean doesEmailExist(String email) {
         return userRepository.findByEmail(email).isPresent();
     }
