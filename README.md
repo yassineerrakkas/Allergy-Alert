@@ -19,6 +19,7 @@ The "Allergy Alert" project is a collaborative effort undertaken by a dynamic te
 
 * Library: React with Node.js.
 * UI Design: Responsive and user-friendly.
+![a](https://github.com/yassineerrakkas/Allergy-Alert/assets/118397882/2af81597-bc76-4960-9ded-e8cfd7900965)
 
 ### OCR (Flask):
 
