@@ -2,14 +2,25 @@
 ## Overview 
 "Allergy Alert" is a web application designed to help users determine whether a food product is safe for consumption based on their declared allergies. Users can specify their allergies, upload an image of the product's ingredients, and the system will analyze the ingredients to provide an alert if any allergens are detected.
 ![Logo](https://github.com/yassineerrakkas/Allergy-Alert/assets/118397882/483658c1-e65c-4c4c-a446-5644743c30a9)
+## Table of contents
+* [Team members](#team-members)
+* [Technologies Used](#technologies-used)
+  * [Backend](#backend)
+  * [Frontend](#frontend)
+  * [OCR](#ocr)
+* [Getting Started](#getting-started)
+  * [Prerequisites](#prerequisites)
+  * [Installation and run](#installation-and-run)
+  * [Usage](#usage)
+  
 ## Team members 
 The "Allergy Alert" project is a collaborative effort undertaken by a dynamic team of data engineering students:
 - [BENABDELLAH Noha](https://github/nohabenabdellah)
 - [BENSALIM Kaoutar](https://github.com/BENSALIMKaoutar)
-- [ERREKKEAS Yassine](https://github.com/yassineerrakkas)
+- [ERRAKKAS Yassine](https://github.com/yassineerrakkas)
 ## Technologies Used 
 
-### Backend (Spring Boot):
+### Backend 
 
 * Framework: Spring Boot with Maven structure.
   ![abc](https://github.com/yassineerrakkas/Allergy-Alert/assets/118397882/87b9c950-8659-42da-8e4a-5d0debc43ee3)
@@ -17,13 +28,13 @@ The "Allergy Alert" project is a collaborative effort undertaken by a dynamic te
 * Language: Java.
   ![ab](https://github.com/yassineerrakkas/Allergy-Alert/assets/118397882/189fc0d0-dfcd-4f24-a6fe-172c477f27d0)
 
-### Frontend (React):
+### Frontend 
 
 * Library: React with Node.js.
 * UI Design: Responsive and user-friendly.
 ![a](https://github.com/yassineerrakkas/Allergy-Alert/assets/118397882/2af81597-bc76-4960-9ded-e8cfd7900965)
 
-### OCR (Flask):
+### OCR 
 
 * Framework: Flask.
 * Purpose: Extract text from ingredient images.
@@ -72,8 +83,9 @@ First, clone the repository.
 3. Activate the virtual environment:
    - On Windows: `venv\Scripts\activate`
    - On Unix or MacOS: `source venv/bin/activate`
-4. Install dependencies: `pip install -r requirements.txt`.
-5. Run the Flask server: `python app.py`.
+4. Install Tesseract OCR . You can download it from [Tesseract OCR](https://github.com/tesseract-ocr/tesseract)
+5. Install dependencies: `pip install -r requirements.txt`.
+6. Run the Flask server: `python app.py`.
 ### Usage
 
 1. Open your web browser and go to [http://localhost:3000](http://localhost:3000) to access the "Allergy Alert" web application.
