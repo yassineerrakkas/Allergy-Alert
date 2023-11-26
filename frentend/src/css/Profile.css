@@ -1,0 +1,40 @@
+.profile-container{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3rem;
+    flex-shrink: 0;
+    margin-bottom: 1rem;
+}
+.user-infos div,.change-pwd div{
+    margin: 1rem;
+    font-size: 1rem;
+}
+.user-infos strong, .change-pwd label{
+    font-size: 1.1rem;
+    color:#39DB4A;
+}
+.change-pwd label{
+    color :rgb(117, 117, 117)
+}
+.change-pwd div input{
+    margin-top: 1rem;
+    border-radius: 20px;
+    align-items: flex-start;
+    height: 1.8rem;
+    width: 12rem;
+    border-radius: 8px;
+    border: 1px solid #CCC;
+    background: #FFF;
+    padding: 0 1rem;
+}
+.save-btn{
+    border: none;
+    border-radius: 12px;
+    background: #39DB4A;
+    color: #FFF;
+    padding: 0.7em 1.2rem;
+    text-align: center; 
+    font-size: 18px;
+    margin: 0 1rem;
+    margin-bottom: 1rem;
+}

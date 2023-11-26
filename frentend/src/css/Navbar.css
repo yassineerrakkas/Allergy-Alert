@@ -1,0 +1,76 @@
+.Navbar{
+    margin-top: 2em;
+    margin-bottom: 4em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo{
+    color:  #000000;
+    font-size: 25px;
+    font-weight: 1000;
+
+}
+
+.allergy{
+    color: #FFF;
+    border-radius: 7px;
+    background: #39DB4A;
+    padding: 0.2rem 0.3rem;
+
+}
+.hac,.btns{
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+.hac li {
+    list-style: none;
+}
+.logo {
+    text-decoration: none;
+    color :black;
+}
+.hac li a, .btn a{
+    text-decoration: none;
+    margin: 0 1rem;
+    color :black;
+}
+.btn {
+    border-radius: 50px;
+    background: #39DB4A;
+    padding: 0.5rem 0.25rem;
+    text-align: center; 
+    margin-right: 0.5rem;
+
+}
+.create-account a{
+    color: white;
+    font-size: 12px;
+    font-style: normal;
+    line-height: 30px; 
+}
+.login,.logout{
+    color :black;
+    background-color: white;
+    border-color: #39DB4A;
+    border: 2px;
+    cursor: pointer;
+}
+.login a:hover,.logout:hover{
+    color: #39DB4A;
+    transition: 0.1s;
+}
+.hac li .active {
+    color :#39DB4A
+}
+.profile-icon{
+    font-size: 2.7rem;
+    margin-right: 1.2rem;
+    color: #7eff8b;
+    cursor: pointer;
+    text-align: center;
+}
+.profile-icon a{
+    text-align: center;
+}

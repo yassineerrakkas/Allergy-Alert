@@ -1,0 +1,9 @@
+.app-content {
+    background-color: #fefefe;
+    min-height: 100vh;
+    margin: 0 7rem;
+    color: #272727;
+    font-family: Poppins;
+    font-size: 17px;
+    font-weight: 600;
+}

@@ -1,0 +1,87 @@
+.home{
+    display: flex;
+    justify-content: space-between;
+}
+.title {
+    font-family: Inter;
+    color:  #000000;
+    font-size: 45px;
+    font-weight: 900;
+    margin-bottom: 1rem;
+}
+.Detector {
+    color : #39DB4A;
+}
+.paragraph{
+    font-weight: 200;
+    margin-bottom: 2rem;
+
+}
+.sous-Tilte{
+    color : #303030;
+    margin-bottom: 3rem;
+}
+.image{
+    width: 30rem;
+}
+.about-us-btn a{
+    margin-left: 1rem;
+    margin-right: 0;
+    color: #000000;
+    text-decoration: none;
+
+}
+
+.get-started-btn a{
+    color: #FFF;
+    border-radius: 18px;
+    background: #39DB4A;
+    padding: 0.6rem 0.6rem;
+    margin-left:0;
+    margin-right: 1rem;
+    text-decoration: none;
+
+}
+.options{
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+.arrow{
+    color: #39DB4A;
+}
+.image-holders{
+    display: flex;
+    gap: 1rem;
+}
+.drage{
+    padding: 3rem 8rem;
+    border: 3px dashed #39DB4A;
+    color : #39DB4A;
+    border-radius: 15px;
+    text-align: center;
+}
+.upload{
+    display: flex;
+    align-items: center;
+    padding: 3rem 3rem;
+    background-color: #39DB4A ;
+    color : white;
+    border-radius: 15px;
+    text-align: center;
+    cursor: pointer;
+}
+.cloudicon{
+    font-size: 3rem;
+}
+.result{
+    padding: 4rem 12rem;
+    border: 3px dashed #39DB4A;
+    color : #39DB4A;
+    border-radius: 15px;
+    text-align: center;
+}
+.notsafe{
+    border: 3px dashed #F77;
+    color : #F77;
+}
