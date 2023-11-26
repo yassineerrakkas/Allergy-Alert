@@ -12,8 +12,10 @@ The "Allergy Alert" project is a collaborative effort undertaken by a dynamic te
 ### Backend (Spring Boot):
 
 * Framework: Spring Boot with Maven structure.
+  ![abc](https://github.com/yassineerrakkas/Allergy-Alert/assets/118397882/87b9c950-8659-42da-8e4a-5d0debc43ee3)
 * Architecture: Model-View-Controller (MVC).
 * Language: Java.
+  ![ab](https://github.com/yassineerrakkas/Allergy-Alert/assets/118397882/189fc0d0-dfcd-4f24-a6fe-172c477f27d0)
 
 ### Frontend (React):
 
